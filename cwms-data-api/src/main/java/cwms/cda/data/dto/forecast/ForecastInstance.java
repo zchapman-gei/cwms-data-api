@@ -43,7 +43,16 @@ public class ForecastInstance {
   @XmlAttribute(name = "metadata")
   private Map<String, String> metadata;
 
-  //@XmlAttribute
-  //private byte[] files
+  @Schema(description = "Forecast Filename")
+  @XmlAttribute(name = "filename")
+  private String filename;
+
+  @Schema(description = "Description of Forecast File")
+  @XmlAttribute
+  private String description;
+
+  @Schema(description = "Forecast File binary data")
+  @XmlElement(name = "forecast-data")
+  byte[] forecastData;
 
 }
