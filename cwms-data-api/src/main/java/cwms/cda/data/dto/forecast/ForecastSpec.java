@@ -1,5 +1,6 @@
 package cwms.cda.data.dto.forecast;
 
+import cwms.cda.api.errors.FieldException;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.xml.bind.annotation.*;
@@ -31,6 +32,47 @@ public class ForecastSpec {
 
   @Schema(description = "List of Time Series IDs belonging to this Forecast Spec")
   @XmlAttribute(name = "time-series-ids")
-  private List<String> timeSeriesIDs;
+  private List<String> timeSeriesIds;
+
+  @SuppressWarnings("unused") // required so JAXB can initialize and marshal
+  private ForecastSpec() {}
+
+  public ForecastSpec(String specId, String officeId, String locationId, String sourceEntityId, String description,
+                      List<String> timeSeriesIds) {
+    this.specId = specId;
+    this.officeId = officeId;
+    this.locationId = locationId;
+    this.sourceEntityId = sourceEntityId;
+    this.description = description;
+    this.timeSeriesIds = timeSeriesIds;
+  }
+
+  public String getSpecId() {
+    return specId;
+  }
+
+  public String getOfficeId() {
+    return officeId;
+  }
+
+  public String getLocationId() {
+    return locationId;
+  }
+
+  public String getSourceEntityId() {
+    return sourceEntityId;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public List<String> getTimeSeriesIds() {
+    return timeSeriesIds;
+  }
+
+  public void validate() throws FieldException {
+    //TODO
+  }
 
 }
