@@ -12,10 +12,6 @@ public class ForecastFile {
   @XmlElement(name = "instance-id")
   String instanceId;
 
-  @Schema(description = "File's Blob ID")
-  @XmlElement(name = "blob-id")
-  String blobId;
-
   @Schema(description = "Forecast Filename")
   @XmlAttribute(name = "filename")
   private String filename;
@@ -23,5 +19,9 @@ public class ForecastFile {
   @Schema(description = "Description of Forecast File")
   @XmlAttribute
   private String description;
+
+  @Schema(description = "Forecast Binary Data")
+  @XmlElement(name = "blob-id")
+  byte forecastData;
 
 }

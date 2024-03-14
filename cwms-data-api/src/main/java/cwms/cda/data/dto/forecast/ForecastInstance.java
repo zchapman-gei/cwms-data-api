@@ -36,15 +36,12 @@ public class ForecastInstance {
   @XmlAttribute(name = "time-series-count")
   private Integer timeSeriesCount;
 
-  @XmlAttribute(name = "file-count")
-  private Integer fileCount;
-
   @Schema(description = "Forecast Instance Notes")
   @XmlAttribute
   private String notes;
 
-  @XmlAttribute
-  private Map<String, String> tags;
+  @XmlAttribute(name = "metadata")
+  private Map<String, String> metadata;
 
   //@XmlAttribute
   //private byte[] files
