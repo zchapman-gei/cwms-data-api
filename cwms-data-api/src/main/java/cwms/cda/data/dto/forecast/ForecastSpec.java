@@ -1,30 +1,36 @@
 package cwms.cda.data.dto.forecast;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@XmlRootElement(name = "alias")
+import javax.xml.bind.annotation.*;
+import java.util.List;
+
+@XmlRootElement(name = "forecast-spec")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ForecastSpec {
 
-  @XmlAttribute
-  private Integer fcstSpecCode;
+  @Schema(description = "Forecast Spec ID")
+  @XmlElement(name = "spec-id")
+  String specId;
 
-  @XmlAttribute
-  private Integer officeCode;
+  @Schema(description = "Office ID that owns the time-series")
+  @XmlElement(name = "office-id")
+  String officeId;
 
-  @XmlAttribute
-  private String fcstSpecId;
+  @Schema(description = "Location ID")
+  @XmlElement(name = "location-id")
+  String locationId;
 
-  @XmlAttribute
-  private Integer locationCode;
+  @Schema(description = "Source Entity ID")
+  @XmlElement(name = "source-entity-id")
+  String sourceEntityId;
 
-  @XmlAttribute
-  private Integer soruceEntity;
-
+  @Schema(description = "Description of Forecast")
   @XmlAttribute
   private String description;
+
+  @Schema(description = "List of Time Series IDs belonging to this Forecast Spec")
+  @XmlAttribute(name = "time-series-ids")
+  private List<String> timeSeriesIDs;
 
 }

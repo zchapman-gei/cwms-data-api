@@ -1,23 +1,26 @@
 package cwms.cda.data.dto.forecast;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-@XmlRootElement(name = "alias")
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "forecast-file")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ForecastFile {
 
-  @XmlAttribute
-  private Integer fcstInstCode;
+  @Schema(description = "Forecast Instance ID")
+  @XmlElement(name = "instance-id")
+  String instanceId;
 
-  @XmlAttribute
-  private Integer blobCode;
+  @Schema(description = "File's Blob ID")
+  @XmlElement(name = "blob-id")
+  String blobId;
 
-  @XmlAttribute
-  private String fileName;
+  @Schema(description = "Forecast Filename")
+  @XmlAttribute(name = "filename")
+  private String filename;
 
+  @Schema(description = "Description of Forecast File")
   @XmlAttribute
   private String description;
 

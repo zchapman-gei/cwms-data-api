@@ -1,47 +1,52 @@
 package cwms.cda.data.dto.forecast;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+import javax.xml.bind.annotation.*;
 import java.time.Instant;
 import java.util.Map;
 
-@XmlRootElement(name = "alias")
+@XmlRootElement(name = "forecast-instance")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ForecastInstance {
 
-  @XmlAttribute
-  private Integer fcstInstCode;
+  @Schema(description = "Forecast Instance ID")
+  @XmlElement(name = "instance-id")
+  String instanceId;
 
-  @XmlAttribute
-  private Integer fcstSpecCode;
+  @Schema(description = "Forecast Spec ID")
+  @XmlElement(name = "spec-id")
+  String specId;
 
-  @XmlAttribute
-  private Instant fcstDateTime;
+  @XmlAttribute(name = "date-time")
+  private Instant dateTime;
 
-  @XmlAttribute
+  @XmlAttribute(name = "issue-date-time")
   private Instant issueDateTime;
 
-  @XmlAttribute
+  @XmlAttribute(name = "first-date-time")
   private Instant firstDateTime;
 
-  @XmlAttribute
+  @XmlAttribute(name = "last-date-time")
   private Instant lastDateTime;
 
-  @XmlAttribute
+  @XmlAttribute(name = "max-age")
   private Integer maxAge;
 
-  @XmlAttribute
+  @XmlAttribute(name = "time-series-count")
   private Integer timeSeriesCount;
 
-  @XmlAttribute
+  @XmlAttribute(name = "file-count")
   private Integer fileCount;
 
+  @Schema(description = "Forecast Instance Notes")
   @XmlAttribute
   private String notes;
 
   @XmlAttribute
-  private Map<String, String> fcstInfo;
+  private Map<String, String> tags;
+
+  //@XmlAttribute
+  //private byte[] files
 
 }
