@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import cwms.cda.formatters.json.JsonV2;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
@@ -67,18 +68,7 @@ public class ForecastSpecTest {
 
   @NotNull
   public static ObjectMapper buildObjectMapper() {
-    return buildObjectMapper(new ObjectMapper());
-  }
-
-  @NotNull
-  public static ObjectMapper buildObjectMapper(ObjectMapper om) {
-    ObjectMapper retval = om.copy();
-
-    retval.setPropertyNamingStrategy(PropertyNamingStrategies.KEBAB_CASE);
-    retval.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    retval.registerModule(new JavaTimeModule());
-
-    return retval;
+    return JsonV2.buildObjectMapper();
   }
 
   void assertForecastSpecEquals(ForecastSpec s1, ForecastSpec s2) {
