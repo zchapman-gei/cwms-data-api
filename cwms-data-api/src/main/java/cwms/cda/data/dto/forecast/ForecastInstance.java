@@ -11,9 +11,7 @@ import java.util.Map;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ForecastInstance {
 
-  @Schema(description = "Forecast Instance ID")
-  @XmlElement(name = "instance-id")
-  String instanceId;
+  // unique identifier: specId + issueDateTime
 
   @Schema(description = "Forecast Spec ID")
   @XmlElement(name = "spec-id")
@@ -59,11 +57,10 @@ public class ForecastInstance {
   @SuppressWarnings("unused") // required so JAXB can initialize and marshal
   private ForecastInstance() {}
 
-  public ForecastInstance(String instanceId, String specId, Instant dateTime, Instant issueDateTime,
+  public ForecastInstance(String specId, Instant dateTime, Instant issueDateTime,
                           Instant firstDateTime, Instant lastDateTime, Integer maxAge, Integer timeSeriesCount,
                           String notes, Map<String, String> metadata, String filename, String fileDescription,
                           byte[] fileData) {
-    this.instanceId = instanceId;
     this.specId = specId;
     this.dateTime = dateTime;
     this.issueDateTime = issueDateTime;
@@ -76,10 +73,6 @@ public class ForecastInstance {
     this.filename = filename;
     this.fileDescription = fileDescription;
     this.fileData = fileData;
-  }
-
-  public String getInstanceId() {
-    return instanceId;
   }
 
   public String getSpecId() {

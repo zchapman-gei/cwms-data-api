@@ -82,7 +82,7 @@ public class ForecastInstanceTest {
     metadata.put("key2", "value2");
     metadata.put("key3", "value3");
 
-    return new ForecastInstance("instance", "spec", dateTime, issueDateTime,
+    return new ForecastInstance("spec", dateTime, issueDateTime,
             firstDateTime, lastDateTime, 5, 3, "test notes",
             metadata, "testFilename.txt", "test file description",
             "test file content".getBytes(StandardCharsets.UTF_8));
@@ -90,7 +90,7 @@ public class ForecastInstanceTest {
 
   @NotNull
   private ForecastInstance buildEmptyForecastInstance() {
-    return new ForecastInstance(null, null, null, null, null,
+    return new ForecastInstance(null, null, null, null,
             null, null, null, null, null, null,
             null, null);
   }
@@ -101,7 +101,6 @@ public class ForecastInstanceTest {
   }
 
   void assertForecastInstanceEquals(ForecastInstance i1, ForecastInstance i2) {
-    assertEquals(i1.getInstanceId(), i2.getInstanceId());
     assertEquals(i1.getSpecId(), i2.getSpecId());
     assertEquals(i1.getDateTime(), i2.getDateTime());
     assertEquals(i1.getIssueDateTime(), i2.getIssueDateTime());
