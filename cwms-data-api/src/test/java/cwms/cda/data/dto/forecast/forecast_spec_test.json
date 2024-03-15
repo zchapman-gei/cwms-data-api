@@ -1,0 +1,12 @@
+{
+  "spec-id": "spec",
+  "office-id": "office",
+  "location-id": "location",
+  "source-entity-id": "sourceEntity",
+  "description": "description",
+  "time-series-ids": [
+    "tsid1",
+    "tsid2",
+    "tsid3"
+  ]
+}

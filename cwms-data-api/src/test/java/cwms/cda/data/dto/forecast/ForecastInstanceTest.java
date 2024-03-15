@@ -5,10 +5,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import cwms.cda.api.DataApiTestIT;
+import cwms.cda.data.dto.texttimeseries.RegularTextTimeSeriesRow;
+import cwms.cda.data.dto.texttimeseries.TextTimeSeries;
 import cwms.cda.formatters.json.JsonV2;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.HashMap;
@@ -47,6 +53,22 @@ public class ForecastInstanceTest {
     assertNotNull(i2);
 
     assertForecastInstanceEquals(i1, i2);
+  }
+
+  @Test
+  void testJsonFile() throws IOException {
+    String json;
+    try (InputStream stream = DataApiTestIT.class.getClassLoader().getResourceAsStream(
+            "cwms/cda/data/dto/forecast/forecast_instance_test.json")) {
+      assertNotNull(stream);
+      json = IOUtils.toString(stream, StandardCharsets.UTF_8);
+    }
+
+    ObjectMapper om = buildObjectMapper();
+    ForecastInstance fi = om.readValue(json, ForecastInstance.class);
+
+    assertNotNull(fi);
+    assertForecastInstanceEquals(fi, buildForecastInstance());
   }
 
   @NotNull
