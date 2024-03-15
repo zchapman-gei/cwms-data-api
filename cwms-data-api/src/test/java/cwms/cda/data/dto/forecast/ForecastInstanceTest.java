@@ -58,8 +58,7 @@ public class ForecastInstanceTest {
   @Test
   void testJsonFile() throws IOException {
     String json;
-    try (InputStream stream = DataApiTestIT.class.getClassLoader().getResourceAsStream(
-            "cwms/cda/data/dto/forecast/forecast_instance_test.json")) {
+    try (InputStream stream = getClass().getResourceAsStream("forecast_instance_test.json")) {
       assertNotNull(stream);
       json = IOUtils.toString(stream, StandardCharsets.UTF_8);
     }
