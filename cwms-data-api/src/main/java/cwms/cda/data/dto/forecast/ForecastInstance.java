@@ -15,7 +15,7 @@ public class ForecastInstance {
 
   @Schema(description = "Forecast Spec ID")
   @XmlElement(name = "spec-id")
-  String specId;
+  private String specId;
 
   @XmlAttribute(name = "date-time")
   private Instant dateTime;
