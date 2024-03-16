@@ -72,11 +72,8 @@ public class ForecastSpecTest {
     tsids.add(new TimeSeriesIdentifierDescriptor.Builder().withTimeSeriesId("tsid2").build());
     tsids.add(new TimeSeriesIdentifierDescriptor.Builder().withTimeSeriesId("tsid3").build());
 
-    TimeSeriesIdentifierDescriptors timeSeriesIds = new TimeSeriesIdentifierDescriptors.Builder(0, 3, 3)
-            .withDescriptors(tsids).build();
-
     return new ForecastSpec("spec", "office", "location", "sourceEntity",
-            "designator", "description", timeSeriesIds);
+            "designator", "description", tsids);
   }
 
   @NotNull

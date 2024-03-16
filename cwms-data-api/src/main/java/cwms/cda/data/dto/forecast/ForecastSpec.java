@@ -1,10 +1,11 @@
 package cwms.cda.data.dto.forecast;
 
 import cwms.cda.api.errors.FieldException;
-import cwms.cda.data.dto.TimeSeriesIdentifierDescriptors;
+import cwms.cda.data.dto.TimeSeriesIdentifierDescriptor;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.xml.bind.annotation.*;
+import java.util.List;
 
 @XmlRootElement(name = "forecast-spec")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -36,13 +37,13 @@ public class ForecastSpec {
 
   @Schema(description = "List of Time Series IDs belonging to this Forecast Spec")
   @XmlAttribute(name = "time-series-ids")
-  private TimeSeriesIdentifierDescriptors timeSeriesIds;
+  private List<TimeSeriesIdentifierDescriptor> timeSeriesIds;
 
   @SuppressWarnings("unused") // required so JAXB can initialize and marshal
   private ForecastSpec() {}
 
   public ForecastSpec(String specId, String officeId, String locationId, String sourceEntityId, String designator,
-                      String description, TimeSeriesIdentifierDescriptors timeSeriesIds) {
+                      String description, List<TimeSeriesIdentifierDescriptor> timeSeriesIds) {
     this.specId = specId;
     this.officeId = officeId;
     this.locationId = locationId;
@@ -76,7 +77,7 @@ public class ForecastSpec {
     return description;
   }
 
-  public TimeSeriesIdentifierDescriptors getTimeSeriesIds() {
+  public List<TimeSeriesIdentifierDescriptor> getTimeSeriesIds() {
     return timeSeriesIds;
   }
 
