@@ -1,13 +1,7 @@
 package cwms.cda.data.dto.forecast;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import cwms.cda.api.DataApiTestIT;
-import cwms.cda.data.dto.texttimeseries.RegularTextTimeSeriesRow;
-import cwms.cda.data.dto.texttimeseries.TextTimeSeries;
 import cwms.cda.formatters.json.JsonV2;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
@@ -100,19 +94,9 @@ public class ForecastInstanceTest {
     return JsonV2.buildObjectMapper();
   }
 
-  void assertForecastInstanceEquals(ForecastInstance i1, ForecastInstance i2) {
-    assertEquals(i1.getSpecId(), i2.getSpecId());
-    assertEquals(i1.getDateTime(), i2.getDateTime());
-    assertEquals(i1.getIssueDateTime(), i2.getIssueDateTime());
-    assertEquals(i1.getFirstDateTime(), i2.getFirstDateTime());
-    assertEquals(i1.getLastDateTime(), i2.getLastDateTime());
-    assertEquals(i1.getMaxAge(), i2.getMaxAge());
-    assertEquals(i1.getTimeSeriesCount(), i2.getTimeSeriesCount());
-    assertEquals(i1.getNotes(), i2.getNotes());
-    assertEquals(i1.getMetadata(), i2.getMetadata());
-    assertEquals(i1.getFilename(), i2.getFilename());
-    assertEquals(i1.getFileDescription(), i2.getFileDescription());
-    assertArrayEquals(i1.getFileData(), i2.getFileData());
+  void assertForecastInstanceEquals(ForecastInstance i1, ForecastInstance i2) throws JsonProcessingException {
+    ObjectMapper om = buildObjectMapper();
+    assertEquals(om.writeValueAsString(i1), om.writeValueAsString(i2));
   }
 
 }

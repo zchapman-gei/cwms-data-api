@@ -5,7 +5,6 @@ import cwms.cda.data.dto.TimeSeriesIdentifierDescriptors;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import javax.xml.bind.annotation.*;
-import java.util.List;
 
 @XmlRootElement(name = "forecast-spec")
 @XmlAccessorType(XmlAccessType.FIELD)

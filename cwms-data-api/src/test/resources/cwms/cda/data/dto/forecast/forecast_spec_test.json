@@ -3,10 +3,26 @@
   "office-id": "office",
   "location-id": "location",
   "source-entity-id": "sourceEntity",
+  "designator": "designator",
   "description": "description",
-  "time-series-ids": [
-    "tsid1",
-    "tsid2",
-    "tsid3"
-  ]
+  "time-series-ids": {
+    "page": "MHx8M3x8Mw==",
+    "total": 3,
+    "descriptors": [
+      {
+        "time-series-id": "tsid1",
+        "active": false
+      },
+      {
+        "time-series-id": "tsid2",
+        "active": false
+      },
+      {
+        "time-series-id": "tsid3",
+        "active": false
+      }
+    ],
+    "next-page": "M3x8M3x8Mw==",
+    "page-size": 3
+  }
 }

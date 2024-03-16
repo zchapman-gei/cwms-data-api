@@ -2,7 +2,8 @@ package cwms.cda.data.dto.forecast;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cwms.cda.api.DataApiTestIT;
+import cwms.cda.data.dto.TimeSeriesIdentifierDescriptor;
+import cwms.cda.data.dto.TimeSeriesIdentifierDescriptors;
 import cwms.cda.formatters.json.JsonV2;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
@@ -66,18 +67,21 @@ public class ForecastSpecTest {
 
   @NotNull
   private ForecastSpec buildForecastSpec() {
-    ArrayList<String> timeSeriesIds = new ArrayList<>();
-    timeSeriesIds.add("tsid1");
-    timeSeriesIds.add("tsid2");
-    timeSeriesIds.add("tsid3");
+    ArrayList<TimeSeriesIdentifierDescriptor> tsids = new ArrayList<>();
+    tsids.add(new TimeSeriesIdentifierDescriptor.Builder().withTimeSeriesId("tsid1").build());
+    tsids.add(new TimeSeriesIdentifierDescriptor.Builder().withTimeSeriesId("tsid2").build());
+    tsids.add(new TimeSeriesIdentifierDescriptor.Builder().withTimeSeriesId("tsid3").build());
+
+    TimeSeriesIdentifierDescriptors timeSeriesIds = new TimeSeriesIdentifierDescriptors.Builder(0, 3, 3)
+            .withDescriptors(tsids).build();
 
     return new ForecastSpec("spec", "office", "location", "sourceEntity",
-            "description", timeSeriesIds);
+            "designator", "description", timeSeriesIds);
   }
 
   @NotNull
   private ForecastSpec buildEmptyForecastSpec() {
-    return new ForecastSpec(null, null, null, null, null, null);
+    return new ForecastSpec(null, null, null, null, null, null, null);
   }
 
   @NotNull
@@ -85,13 +89,9 @@ public class ForecastSpecTest {
     return JsonV2.buildObjectMapper();
   }
 
-  void assertForecastSpecEquals(ForecastSpec s1, ForecastSpec s2) {
-    assertEquals(s1.getSpecId(), s2.getSpecId());
-    assertEquals(s1.getOfficeId(), s2.getOfficeId());
-    assertEquals(s1.getLocationId(), s2.getLocationId());
-    assertEquals(s1.getSourceEntityId(), s2.getSourceEntityId());
-    assertEquals(s1.getDescription(), s2.getDescription());
-    assertIterableEquals(s1.getTimeSeriesIds(), s2.getTimeSeriesIds());
+  void assertForecastSpecEquals(ForecastSpec s1, ForecastSpec s2) throws JsonProcessingException {
+    ObjectMapper om = buildObjectMapper();
+    assertEquals(om.writeValueAsString(s1), om.writeValueAsString(s2));
   }
 
 }
